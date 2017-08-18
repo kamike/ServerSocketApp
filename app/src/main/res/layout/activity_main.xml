@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2eee"
     tools:context="com.example.administrator.serversocketapp.MainActivity">
 
 
@@ -13,21 +14,37 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:text="Start"
         android:clickable="true"
         android:onClick="onclickMainStart"
+        android:text="Start"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/button2"
         tools:layout_editor_absoluteY="61dp" />
 
     <Button
-        android:clickable="true"
-        android:onClick="onclickMainStop"
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="66dp"
+        android:clickable="true"
+        android:onClick="onclickMainStop"
         android:text="Stop"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_editor_absoluteY="61dp" />
+
+    <ImageView
+        android:id="@+id/main_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </android.support.constraint.ConstraintLayout>
