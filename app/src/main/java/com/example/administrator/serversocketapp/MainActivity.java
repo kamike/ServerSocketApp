@@ -49,7 +49,8 @@ public class MainActivity extends Activity {
     public static final int SERVER_PORT = 8887;
 
     public void onclickMainStart(View view) {
-
+        previousX=-1;
+        previousY=-1;
         System.out.println("自己的ip地址：" + getWIfiLocalIp(this));
 
         Toast.makeText(this, "服务器开始===", Toast.LENGTH_SHORT).show();
@@ -78,12 +79,15 @@ public class MainActivity extends Activity {
                             Message msg = new Message();
                             msg.obj = bmp;
                             handler.sendMessage(msg);
-
-                            //x,y
-                            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-                            out.writeUTF(onclickX + "," + onclickY);
-                            out.flush();
-                            out.close();
+                            if (onclickX != previousX && onclickY != previousY) {
+                                //x,y
+                                DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+                                out.writeUTF(onclickX + "," + onclickY);
+                                previousX = onclickX;
+                                previousY = onclickY;
+                                out.flush();
+                                out.close();
+                            }
 
                             in.close();
                             dataInput.close();
@@ -174,6 +178,7 @@ public class MainActivity extends Activity {
     }
 
     private int onclickX, onclickY;
+    private int previousX=-1, previousY=-1;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
