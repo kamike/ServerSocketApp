@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Inet4Address;
@@ -79,10 +80,10 @@ public class MainActivity extends Activity {
                             handler.sendMessage(msg);
 
                             //x,y
-//                            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-//                            out.writeUTF(onclickX + "," + onclickY);
-//                            out.flush();
-//                            out.close();
+                            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+                            out.writeUTF(onclickX + "," + onclickY);
+                            out.flush();
+                            out.close();
 
                             in.close();
                             dataInput.close();
