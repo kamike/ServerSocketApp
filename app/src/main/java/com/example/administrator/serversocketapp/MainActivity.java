@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
 
     private boolean isRuning = true;
 
-    public static final int SERVER_PORT = 8888;
+    public static final int SERVER_PORT = 8887;
 
     public void onclickMainStart(View view) {
 
