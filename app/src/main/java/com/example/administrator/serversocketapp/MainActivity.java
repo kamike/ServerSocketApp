@@ -9,6 +9,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Message;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -76,6 +77,13 @@ public class MainActivity extends Activity {
                             Message msg = new Message();
                             msg.obj = bmp;
                             handler.sendMessage(msg);
+
+                            //x,y
+//                            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+//                            out.writeUTF(onclickX + "," + onclickY);
+//                            out.flush();
+//                            out.close();
+
                             in.close();
                             dataInput.close();
                             socket.close();
@@ -164,4 +172,21 @@ public class MainActivity extends Activity {
         return null;
     }
 
+    private int onclickX, onclickY;
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                onclickX = (int) event.getX();
+                onclickY = (int) event.getY();
+                System.out.println("x,y:" + event.getX() + "," + event.getY());
+                break;
+            case MotionEvent.ACTION_MOVE:
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+        }
+        return super.onTouchEvent(event);
+    }
 }
