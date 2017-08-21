@@ -7,11 +7,17 @@
     android:background="#2eee"
     tools:context="com.example.administrator.serversocketapp.MainActivity">
 
+    <TextView
+        android:id="@+id/main_content_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
     <ImageView
         android:id="@+id/main_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#fff" />
+        android:layout_alignParentLeft="true" />
 
 
     <Button

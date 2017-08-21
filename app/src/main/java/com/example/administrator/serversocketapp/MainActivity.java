@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.MotionEvent;
@@ -14,6 +16,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.DataInputStream;
@@ -30,6 +34,7 @@ import java.util.Enumeration;
 
 public class MainActivity extends Activity {
     private ImageView imageView;
+    private TextView tvIp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         imageView = (ImageView) findViewById(R.id.main_imageView);
+        tvIp = (TextView) findViewById(R.id.main_content_tv);
     }
 
     private boolean isRuning = true;
@@ -49,10 +55,9 @@ public class MainActivity extends Activity {
     public static final int SERVER_PORT = 8887;
 
     public void onclickMainStart(View view) {
-        previousX=-1;
-        previousY=-1;
-        System.out.println("自己的ip地址：" + getWIfiLocalIp(this));
-
+        previousX = -1;
+        previousY = -1;
+        tvIp.setText(getWIfiLocalIp(this));
         Toast.makeText(this, "服务器开始===", Toast.LENGTH_SHORT).show();
         isRuning = true;
         new Thread() {
@@ -110,7 +115,19 @@ public class MainActivity extends Activity {
                 return;
             }
 
-            imageView.setImageBitmap((Bitmap) msg.obj);
+            Bitmap bmp = (Bitmap) msg.obj;
+            if (bmp == null) {
+                return;
+            }
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
+            params.width = bmp.getWidth();
+            params.height = bmp.getHeight();
+            imageView.setLayoutParams(params);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                imageView.setBackground(new BitmapDrawable(bmp));
+            }else{
+                imageView.setImageBitmap(bmp);
+            }
         }
     };
 
@@ -178,7 +195,7 @@ public class MainActivity extends Activity {
     }
 
     private int onclickX, onclickY;
-    private int previousX=-1, previousY=-1;
+    private int previousX = -1, previousY = -1;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
