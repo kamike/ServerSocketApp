@@ -135,6 +135,7 @@ public class MainActivity extends Activity {
     public void onclickMainStop(View view) {
         isRuning = false;
         Toast.makeText(this, "服务器停止受理", Toast.LENGTH_SHORT).show();
+        imageView.setImageBitmap(null);
     }
 
 

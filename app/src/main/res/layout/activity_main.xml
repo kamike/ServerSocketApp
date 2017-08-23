@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="12dp"
         android:clickable="true"
         android:onClick="onclickMainStart"
         android:text="Start" />
@@ -36,8 +37,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="24dp"
+        android:layout_marginTop="12dp"
         android:clickable="true"
         android:onClick="onclickMainStop"
+        android:visibility="gone"
         android:text="Stop"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_editor_absoluteY="61dp" />
