@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2eee"
-    tools:context="com.example.administrator.serversocketapp.MainActivity">
+    android:background="#2eee">
 
     <TextView
         android:id="@+id/main_content_tv"
@@ -29,21 +26,20 @@
         android:layout_marginTop="12dp"
         android:clickable="true"
         android:onClick="onclickMainStart"
-        android:text="Start" />
+        android:text="Start"
+        android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/et_main"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="24dp"
         android:layout_marginTop="12dp"
         android:clickable="true"
-        android:onClick="onclickMainStop"
-        android:visibility="gone"
-        android:text="Stop"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="61dp" />
+        android:hint="输入要发送的文字"
+        android:maxLength="10"
+        android:visibility="visible" />
 
 
 </RelativeLayout>

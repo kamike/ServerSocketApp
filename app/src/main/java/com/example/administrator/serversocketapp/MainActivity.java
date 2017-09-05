@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ import java.util.Enumeration;
 public class MainActivity extends Activity {
     private ImageView imageView;
     private TextView tvIp;
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class MainActivity extends Activity {
 
         imageView = (ImageView) findViewById(R.id.main_imageView);
         tvIp = (TextView) findViewById(R.id.main_content_tv);
+        editText = findViewById(R.id.et_main);
     }
 
     private boolean isRuning = true;
@@ -87,7 +90,7 @@ public class MainActivity extends Activity {
                             if (onclickX != previousX && onclickY != previousY) {
                                 //x,y
                                 DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-                                out.writeUTF(onclickX + "," + onclickY);
+                                out.writeUTF(onclickX + "," + onclickY + "," + editText.getText().toString());
                                 previousX = onclickX;
                                 previousY = onclickY;
                                 out.flush();
@@ -125,7 +128,7 @@ public class MainActivity extends Activity {
             imageView.setLayoutParams(params);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 imageView.setBackground(new BitmapDrawable(bmp));
-            }else{
+            } else {
                 imageView.setImageBitmap(bmp);
             }
         }
@@ -133,9 +136,7 @@ public class MainActivity extends Activity {
 
 
     public void onclickMainStop(View view) {
-        isRuning = false;
-        Toast.makeText(this, "服务器停止受理", Toast.LENGTH_SHORT).show();
-        imageView.setImageBitmap(null);
+
     }
 
 
